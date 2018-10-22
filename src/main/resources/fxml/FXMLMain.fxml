@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="586.0" prefWidth="717.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.mouses.controller.FXMLMainController">
+   <children>
+      <BorderPane layoutX="-1.0" prefHeight="586.0" prefWidth="717.0">
+         <bottom>
+            <JFXButton fx:id="botaoEvoluir" onAction="#evoluir" prefHeight="37.0" prefWidth="97.0" ripplerFill="#0028ee" style="-fx-background-color: #008CBA;" text="EVOLUIR" textAlignment="CENTER" textFill="WHITE" BorderPane.alignment="TOP_CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <BorderPane.margin>
+                  <Insets bottom="30.0" />
+               </BorderPane.margin>
+            </JFXButton>
+         </bottom>
+         <left>
+            <VBox alignment="CENTER" prefHeight="499.0" prefWidth="234.0" spacing="20.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label alignment="CENTER" prefHeight="21.0" prefWidth="70.0" text="Tamanho: ">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="160.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="21.0" prefWidth="58.0" text="Origem: ">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="165.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="21.0" prefWidth="63.0" text="Destino: ">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="160.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="21.0" prefWidth="165.0" text=" Tamanho da População:">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="50.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="21.0" prefWidth="143.0" text="Taxa de Cruzamento:">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="75.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="21.0" prefWidth="165.0" text="Taxa de Mutação:">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="95.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="21.0" prefWidth="165.0" text="Mecanismo de Seleção:">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="50.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="21.0" prefWidth="165.0" text="Número de Gerações:">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="55.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </VBox>
+         </left>
+         <top>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Configuraçao do Algoritmo Genético" wrappingWidth="345.13671875" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <BorderPane.margin>
+                  <Insets top="50.0" />
+               </BorderPane.margin>
+            </Text>
+         </top>
+         <right>
+            <Pane prefHeight="393.0" prefWidth="483.0" BorderPane.alignment="CENTER">
+               <children>
+                  <JFXTextField fx:id="tam_field" layoutX="16.0" layoutY="63.0" prefHeight="25.0" prefWidth="367.0" />
+                  <JFXTextField fx:id="origem_field" layoutX="16.0" layoutY="104.0" prefHeight="25.0" prefWidth="367.0" />
+                  <JFXTextField fx:id="destino_field" layoutX="16.0" layoutY="141.0" prefHeight="25.0" prefWidth="369.0" />
+                  <JFXComboBox fx:id="pop_box" layoutX="16.0" layoutY="187.0" prefHeight="25.0" prefWidth="369.0" />
+                  <JFXComboBox fx:id="cruz_box" layoutX="16.0" layoutY="230.0" prefHeight="25.0" prefWidth="371.0" />
+                  <JFXComboBox fx:id="mut_box" layoutX="16.0" layoutY="268.0" prefHeight="25.0" prefWidth="371.0" />
+                  <JFXComboBox fx:id="selecao_box" layoutX="14.0" layoutY="311.0" prefHeight="25.0" prefWidth="375.0" />
+                  <JFXComboBox fx:id="geracoes_box" layoutX="14.0" layoutY="354.0" prefHeight="25.0" prefWidth="376.0" />
+               </children>
+            </Pane>
+         </right>
+      </BorderPane>
+   </children>
+</AnchorPane>

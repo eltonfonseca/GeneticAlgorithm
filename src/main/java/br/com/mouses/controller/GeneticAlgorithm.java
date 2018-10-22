@@ -18,6 +18,7 @@ import java.util.Random;
 public class GeneticAlgorithm {
     
     private final List<Cromossomo> populacao;
+    private final List<Cromossomo> nova_populacao;
     private final Configuration config;
     private int[] genes;
     private Random rand;
@@ -25,6 +26,7 @@ public class GeneticAlgorithm {
     public GeneticAlgorithm(Configuration config) {
         this.config = config;
         this.populacao = new ArrayList<>();
+        this.nova_populacao = new ArrayList<>(); 
     }
     
     private int[] geraGenesRandomicos() {
@@ -57,6 +59,18 @@ public class GeneticAlgorithm {
         ordenaPopulacaoPorFitness();
     }
     
+    public void seleciona() {
+        
+        int tamanho_nova_populacao = this.config.getTax_cruz() * this.populacao.size() / 100;
+                
+        if(this.config.getSelecao().equals("Rank")) {
+            
+        } 
+        else {
+            System.out.println("Rank + Torneio");
+        }
+    }
+    
     public void showPopulation() {
         for(int i = 0; i < this.populacao.size(); i++) {
             System.out.print((i + 1) + " Fitness: " + populacao.get(i).getFitness() + " Gene: ");
@@ -66,5 +80,5 @@ public class GeneticAlgorithm {
     
     private void ordenaPopulacaoPorFitness() {
         this.populacao.sort((Cromossomo a, Cromossomo b) -> a.getFitness() - b.getFitness());
-    }
+    } 
 }
