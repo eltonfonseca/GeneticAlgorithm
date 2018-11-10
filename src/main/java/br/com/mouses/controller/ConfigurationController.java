@@ -15,7 +15,7 @@ public class ConfigurationController {
     
     private final Configuration config;
     
-    public ConfigurationController(int qtd_genes, int origem, int destino, int tam_pop, int tax_cruz, int tax_mut, String selecao, int geracoes) {
+    public ConfigurationController(int qtd_genes, int origem, int destino, int tam_pop, int tax_cruz, Double tax_mut, String selecao, int geracoes) {
         config = new Configuration(qtd_genes, origem, destino, tam_pop, tax_cruz, tax_mut, selecao, geracoes);
     }
     

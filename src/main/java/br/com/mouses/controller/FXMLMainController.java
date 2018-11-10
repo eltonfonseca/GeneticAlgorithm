@@ -5,10 +5,10 @@
  */
 package br.com.mouses.controller;
 
+import br.com.mouses.model.GeneticAlgorithm;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
-import java.awt.Component;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -16,9 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -40,7 +38,7 @@ public class FXMLMainController implements Initializable {
     @FXML
     private JFXComboBox<Integer> cruz_box;
     @FXML
-    private JFXComboBox<Integer> mut_box;
+    private JFXComboBox<Double> mut_box;
     @FXML
     private JFXComboBox<String> selecao_box;
     @FXML
@@ -60,8 +58,8 @@ public class FXMLMainController implements Initializable {
         cruz_box.getItems().addAll(80, 85, 90);
         cruz_box.setValue(80);
 
-        mut_box.getItems().addAll(1, 3, 5);
-        mut_box.setValue(1);
+        mut_box.getItems().addAll(0.05, 0.5, 1.0);
+        mut_box.setValue(0.05);
 
         selecao_box.getItems().addAll("Rank", "Rank + Torneio");
         selecao_box.setValue("Rank");
@@ -78,7 +76,7 @@ public class FXMLMainController implements Initializable {
         int destino = Integer.parseInt(destino_field.getText());
         int populacao = pop_box.getSelectionModel().getSelectedItem();
         int cruzamento = cruz_box.getSelectionModel().getSelectedItem();
-        int mutacao = mut_box.getSelectionModel().getSelectedItem();
+        Double mutacao = mut_box.getSelectionModel().getSelectedItem();
         String selecao = selecao_box.getSelectionModel().getSelectedItem();
         int geracoes = geracoes_box.getSelectionModel().getSelectedItem();
 
@@ -88,8 +86,14 @@ public class FXMLMainController implements Initializable {
         System.out.println("Gerando população inicial...");
         ga.populacaoInicial();
         ga.showPopulation(ga.getPopulacao());
+        System.out.println();
+        System.out.println("Selecionando...");
         ga.seleciona();
-        ga.showPopulation(ga.getNovaPopulacao());
+        System.out.println("Cruzando...");
+        ga.cruzamento();
+        System.out.println("Mutando...");
+        ga.mutacao();
+        ga.showPopulation(ga.getPopulacao());
 
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Informação");

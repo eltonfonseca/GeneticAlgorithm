@@ -3,10 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.mouses.controller;
+package br.com.mouses.model;
 
-import br.com.mouses.model.Configuration;
-import br.com.mouses.model.Cromossomo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -90,8 +88,6 @@ public class GeneticAlgorithm {
                 else
                     this.nova_populacao.add(b);
             }
-            
-            ordenaPopulacaoPorFitness(true);
         }
     }
     
@@ -101,6 +97,58 @@ public class GeneticAlgorithm {
             System.out.print((i + 1) + " Fitness: " + populacao.get(i).getFitness() + " Gene: ");
             populacao.get(i).show_genes();
         }
+    }
+    
+    public void cruzamento() {
+        Cromossomo pai, mae, filho1, filho2;
+        int vezes_cruzar = (int) this.nova_populacao.size() / 2;
+        
+        for(int i = 0; i < vezes_cruzar; i++) {
+            pai = this.nova_populacao.get(i);
+            mae = this.nova_populacao.get(i + 1);
+            filho1 = new Cromossomo(new int[this.config.getQtd_genes()]);
+            filho2 = new Cromossomo(new int[this.config.getQtd_genes()]);
+            
+            filho1.getGenes()[0] = pai.getGenes()[0];
+            filho1.getGenes()[this.config.getQtd_genes() - 1] = pai.getGenes()[this.config.getQtd_genes() - 1];
+            filho2.getGenes()[0] = pai.getGenes()[0];
+            filho2.getGenes()[this.config.getQtd_genes() - 1] = pai.getGenes()[this.config.getQtd_genes() - 1];
+            
+            for(int j = 1; j < this.config.getQtd_genes() - 1; j++) {
+                if(j <= (this.config.getQtd_genes() / 2) - 1) {
+                    filho1.getGenes()[j] = pai.getGenes()[j];
+                    filho2.getGenes()[j] = mae.getGenes()[j];
+                }
+                else {
+                    filho1.getGenes()[j] = mae.getGenes()[j];
+                    filho2.getGenes()[j] = pai.getGenes()[j];
+                }
+            }
+            
+            this.nova_populacao.add(filho1);
+            this.nova_populacao.add(filho2);
+        }
+    }
+    
+    public void mutacao() {
+        int qtd_mutacao = (int) (this.nova_populacao.size() * (this.config.getQtd_genes() - 2) * this.config.getTax_mut());
+        
+        for(int i = 0; i < qtd_mutacao; i++) {
+            rand = new Random();
+            int randCromossomo = rand.nextInt(this.nova_populacao.size());
+            int randGene = rand.nextInt(this.config.getQtd_genes());
+            int randValor = rand.nextInt(this.config.getQtd_genes());
+            this.nova_populacao.get(randCromossomo).getGenes()[randGene] = randValor;
+        }
+        
+        for(int i = 0; i < this.nova_populacao.size(); i++) 
+            this.nova_populacao.get(i).setFitness(this.calcularFitness(this.nova_populacao.get(i).getGenes()));
+        this.ordenaPopulacaoPorFitness(true);
+        this.populacao.clear();
+        
+        for(int i = 0; i < this.config.getTam_pop(); i++)
+            this.populacao.add(this.nova_populacao.get(i));
+        this.nova_populacao.clear();
     }
     
     private void ordenaPopulacaoPorFitness(boolean ordenaNovaPopulacao) {

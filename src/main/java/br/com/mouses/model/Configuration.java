@@ -16,11 +16,11 @@ public class Configuration {
     private final int destino;
     private final int tam_pop;
     private final int tax_cruz;
-    private final int tax_mut;
+    private final Double tax_mut;
     private final String selecao;
     private final int geracoes;
 
-    public Configuration(int qtd_genes, int origem, int destino, int tam_pop, int tax_cruz, int tax_mut, String selecao, int geracoes) {
+    public Configuration(int qtd_genes, int origem, int destino, int tam_pop, int tax_cruz, Double tax_mut, String selecao, int geracoes) {
         this.qtd_genes = qtd_genes;
         this.origem = origem;
         this.destino = destino;
@@ -51,7 +51,7 @@ public class Configuration {
         return this.tax_cruz;
     }
 
-    public int getTax_mut() {
+    public Double getTax_mut() {
         return this.tax_mut;
     }
 
