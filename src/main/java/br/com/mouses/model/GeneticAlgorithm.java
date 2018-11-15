@@ -132,11 +132,16 @@ public class GeneticAlgorithm {
     
     public void mutacao() {
         int qtd_mutacao = (int) (this.nova_populacao.size() * (this.config.getQtd_genes() - 2) * this.config.getTax_mut());
+        int randGene = 0;
         
         for(int i = 0; i < qtd_mutacao; i++) {
             rand = new Random();
             int randCromossomo = rand.nextInt(this.nova_populacao.size());
-            int randGene = rand.nextInt(this.config.getQtd_genes());
+            while(true) {
+                randGene = rand.nextInt(this.config.getQtd_genes());
+                if(randGene != 0 && randGene != this.config.getQtd_genes() - 1)
+                    break;
+            }
             int randValor = rand.nextInt(this.config.getQtd_genes());
             this.nova_populacao.get(randCromossomo).getGenes()[randGene] = randValor;
         }
